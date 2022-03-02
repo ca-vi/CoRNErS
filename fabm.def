@@ -1,9 +1,11 @@
 Bootstrap: localimage
 From: /home/singularity/base_container/xios.sif
+# From: /home/singularity/base_container/baseOS.sif
 
 ####
 ##
-## Authors:      Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+## Authors:     Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+## 		Carsten Lackner, TU Berlin <carsten.lackner@tu-berlin.de>
 ##
 ## Definition file for building FABM-ERSEM Singularity Container
 ##
@@ -35,6 +37,7 @@ From: /home/singularity/base_container/xios.sif
 
 %labels
     Author miwa@pml.ac.uk
+    Author carsten.lackner@tu-berlin.de
 
 %help
     The definition file used to build FABM-ERSEM:

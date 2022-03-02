@@ -1,5 +1,6 @@
 Bootstrap: localimage
-From: /home/singularity/base_container/baseOS.sif
+From: /home/singularity/baseOS.sif
+# From: /home/singularity/fabm.sif
 
 ####
 ##
@@ -21,8 +22,7 @@ From: /home/singularity/base_container/baseOS.sif
     cd /home/singularity
 #    apt-get install subversion
 #    svn checkout http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-2.5 xios
-    unzip xios2.zip xios
-    
+    unzip xios2.zip xios    
     PATH=$PATH:/opt/mpi/install/bin:/opt/hdf5/install/bin
     LD_LIBRARY_PATH=/opt/hdf5/install/lib:$LD_LIBRARY_PATH
 
@@ -57,6 +57,7 @@ From: /home/singularity/base_container/baseOS.sif
 
 %labels
     Author carsten.lackner@tu-berlin.de
+    Author miwa@pml.ac.uk
 
 %help
     The definition file used to build XIOS:
