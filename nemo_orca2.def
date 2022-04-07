@@ -3,8 +3,8 @@ From: /home/singularity/xios.sif
 
 ####
 ##
-## Authors:      Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
-##
+## Authors:     Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+##		Carsten Lackner, TU Berlin <carsten.lackner@tu-berlin.de>
 ## Definition file for building NEMO Singularity Containers
 ##
 #####
@@ -60,7 +60,7 @@ From: /home/singularity/xios.sif
     fi
 
 %labels
-    Author miwa@pml.ac.uk
+    Author	carsten.lackner@tu-berlin.de
 
 %help
     The definition file used to build XIOS:
