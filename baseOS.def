@@ -50,7 +50,9 @@ From: ubuntu:20.04
                    libibverbs-dev \
                    libpmix-dev \
                    libslurm-dev \
-                   libnuma-dev 
+                   libnuma-dev \
+                   zip \
+                   cmake
 
     ##
     # make gcc-10 available
@@ -58,7 +60,7 @@ From: ubuntu:20.04
      
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 
     update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-10 100
-    ln -s /usr/bin/cpp-10 /usr/bin/cpp
+    #ln -s /usr/bin/cpp-10 /usr/bin/cpp
 
     ##
     # clean up base build

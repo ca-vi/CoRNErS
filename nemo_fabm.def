@@ -1,5 +1,5 @@
 Bootstrap: localimage
-From: /home/singularity/xios.sif
+From: /home/singularity/fabm.sif
 
 ####
 ##
@@ -10,19 +10,23 @@ From: /home/singularity/xios.sif
 #####
 
 %files
-    /home/singularity/input_files/arch/nemo-arch/arch-singularity.fcm /home/singularity/input_files/arch/nemo-arch/arch-singularity.fcm
+    /home/singularity/input_files/arch/nemo-arch/arch-singularity.fcm
+    /home/singularity/nemo_fabm.zip
 
 %post
+    cd home/singularity
+    unzip nemo_fabm.zip
+    rm nemo_fabm.zip
     cd /home/singularity/nemo
-    cp /home/singularity/input_files/arch/nemo-arch/* /home/singularity/nemo/arch/PML
+    cp /home/singularity/input_files/arch/nemo-arch/* /home/singularity/nemo/arch
 
-    echo "Compiling nemo AMM7 Config"
-    ./makenemo -m singularity -r AMM7_FABM -j 8
+    echo "Compiling nemo ORCA2_FABM Config"
+    ./makenemo -m singularity -r ORCA2_FABM -j 8
 
     mkdir /opt/nemo
-    mv /home/singularity/nemo/cfgs/AMM7_FABM/BLD/bin/nemo.exe /opt/nemo
+    mv /home/singularity/nemo/cfgs/ORCA2_FABM/BLD/bin/nemo.exe /opt/nemo_fabm
+    mv /home/singularity/nemo/cfgs/ORCA2_FABM/EXP00 /home/singularity/ORCA2_FABM/EXP00
 
-    rm -rf /home/singularity/xios
     rm -rf /home/singularity/nemo
     # The above didnt seem to work so blanket chmod for time being 
     chmod -Rv 755 /opt

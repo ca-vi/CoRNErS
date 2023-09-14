@@ -33,27 +33,27 @@
 %NCDF_HOME           /opt/netcdf/install
 %HDF5_HOME           /opt/hdf5/install
 %XIOS_HOME           /home/singularity/xios
+%FABM_HOME           /home/singularity/fabm-gcc
 
 %NCDF_INC            -I%NCDF_HOME/include -I%HDF5_HOME/include
 %NCDF_LIB            -L%HDF5_HOME/lib -L%NCDF_HOME/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lcurl -lz
 %XIOS_INC            -I%XIOS_HOME/inc
-%XIOS_LIB            -L%XIOS_HOME/lib -lxios
+%XIOS_LIB            -L%XIOS_HOME/lib -lxios -lstdc++ -L/usr/lib/gcc/x86_64-linux-gnu/5
+%FABM_INC            -I%FABM_HOME/include
+%FABM_LIB            -L%FABM_HOME/lib -lfabm
 
-%CPP                 cpp -Dkey_nosignedzero
-%CPPFLAGS            -P -traditional
-
+%CPP                 cpp -Dkey_nosignedzero -P -traditional -I/home/singularity/fabm-gcc/include
 %FC                  /opt/mpi/install/bin/mpif90
-%FCFLAGS             -fdefault-double-8 -fdefault-real-8 -O3 -funroll-all-loops -fcray-pointer -cpp -ffree-line-length-none -w -fallow-argument-mismatch
-%FFLAGS              %FCFLAGS
-%LD                  %FC
+%FCFLAGS             -fdefault-double-8 -fdefault-real-8 -O1 -funroll-all-loops -fcray-pointer -ffree-line-length-none -w -fallow-argument-mismatch
+%FFLAGS              -fdefault-double-8 -fdefault-real-8 -O1 -funroll-all-loops -fcray-pointer -ffree-line-length-none -w -fallow-argument-mismatch
+%LD                  /opt/mpi/install/bin/mpif90
+%FPPFLAGS            -P -traditional
 %LDFLAGS
-%FPPFLAGS            -P -C -traditional
-
 %AR                  ar
-%ARFLAGS             -rs
-%MK                  make
-%USER_INC            %XIOS_INC %NCDF_INC
-%USER_LIB            %XIOS_LIB %NCDF_LIB
+%ARFLAGS             -r
+%MK                  gmake
+%USER_INC            %XIOS_INC %NCDF_INC %FABM_INC
+%USER_LIB            %XIOS_LIB %NCDF_LIB %FABM_LIB
 
-#%CC                  /opt/mpi/install/bin/mpicc
-#%CFLAGS              -O0
+%CC                  /opt/mpi/install/bin/mpicc
+%CFLAGS              -O0

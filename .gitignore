@@ -4,7 +4,9 @@
 # Ignore NEMO and XIOS folders
 nemo
 xios
-nemo-xios.zip
+
+# Ignore zip files
+*.zip
 
 # swap files
 *.swp

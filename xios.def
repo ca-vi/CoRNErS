@@ -1,9 +1,10 @@
 Bootstrap: localimage
-From: /home/singularity/fabm.sif
+From: /home/singularity/base_container/baseOS.sif
 
 ####
 ##
-## Authors:      Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+## Authors: Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+##          Carsten Lackner, Technische Universität Berlin <carsten.lackner@tu-berlin.de>
 ##
 ## Definition file for building XIOS Singularity Containers
 ##
@@ -13,12 +14,14 @@ From: /home/singularity/fabm.sif
     /home/singularity/input_files/arch/xios-arch/arch-singularity.fcm /home/singularity/input_files/arch/xios-arch/arch-singularity.fcm
     /home/singularity/input_files/arch/xios-arch/arch-singularity.env /home/singularity/input_files/arch/xios-arch/arch-singularity.env
     /home/singularity/input_files/arch/xios-arch/arch-singularity.path /home/singularity/input_files/arch/xios-arch/arch-singularity.path
-    /home/singularity/nemo-xios.zip /home/singularity/nemo-xios.zip
+    # take xios zip
+    /home/singularity/xios2.zip
 
 %post
     cd /home/singularity
-    unzip nemo-xios.zip
-    rm -rf /home/singularity/nemo-xios.zip
+#    apt-get install subversion
+#    svn checkout http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-2.5 xios
+    unzip xios2.zip xios
     
     PATH=$PATH:/opt/mpi/install/bin:/opt/hdf5/install/bin
     LD_LIBRARY_PATH=/opt/hdf5/install/lib:$LD_LIBRARY_PATH
@@ -53,7 +56,7 @@ From: /home/singularity/fabm.sif
     /opt/xios/xios_server.exe
 
 %labels
-    Author miwa@pml.ac.uk
+    Author carsten.lackner@tu-berlin.de
 
 %help
     The definition file used to build XIOS:

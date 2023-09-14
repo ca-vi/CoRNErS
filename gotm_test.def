@@ -1,0 +1,43 @@
+Bootstrap: localimage
+From: /home/singularity/base_container/baseOS.sif
+
+####
+##
+## Authors: Carsten Lackner, Technische Universität Berlin <carsten.lackner@tu-berlin.de>
+##          Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+##
+## Definition file for building XIOS Singularity Containers
+##
+#####
+
+%files
+    /home/singularity/../gotm
+    /home/singularity/../fabm
+    /home/singularity/../ersem/ersem
+    /home/singularity/../ersem/ersem_pr
+
+%post
+    echo "Compiling gotm"
+    mkdir opt/gotm && cd gotm
+    cmake ../../gotm -DFABM_BASE=../../fabm -DFABM_ERSEM_BASE=../../ersem/ersem
+    make install -j $CPU
+        
+%environment
+    
+    export GOTM_DIR=/home/singularity/gotm_build
+    export GOTM_HOME=$GOTM_DIR
+
+%runscript
+    #!/bin/bash
+
+    /opt/gotm/gotm
+
+%labels
+    Author carsten.lackner@tu-berlin.de
+
+%help
+    The definition file used to build GOTM:
+
+    To build the container, run
+
+        singularity build gotm.sif gotm.def
