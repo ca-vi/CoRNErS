@@ -1,16 +1,45 @@
 Bootstrap: localimage
+<<<<<<< HEAD
 From: /home/singularity/xios.sif
 
 ####
 ##
 ## Authors:     Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
 ##		Carsten Lackner, TU Berlin <carsten.lackner@tu-berlin.de>
+=======
+From: /home/singularity/fabm.sif
+
+####
+##
+## Authors:      Michael Wathen, Plymouth Marine Laboratory <miwa@pml.ac.uk>
+##
+>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak)
 ## Definition file for building NEMO Singularity Containers
 ##
 #####
 
 %files
     /home/singularity/input_files/arch/nemo-arch/arch-singularity.fcm
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:nemo_fabm.def
+    /home/singularity/nemo_fabm.zip
+
+%post
+    cd home/singularity
+    unzip nemo_fabm.zip
+    rm nemo_fabm.zip
+    cd /home/singularity/nemo
+    cp /home/singularity/input_files/arch/nemo-arch/* /home/singularity/nemo/arch
+
+    echo "Compiling nemo ORCA2_FABM Config"
+    ./makenemo -m singularity -r ORCA2_FABM -j 8
+
+    mkdir /opt/nemo
+    mv /home/singularity/nemo/cfgs/ORCA2_FABM/BLD/bin/nemo.exe /opt/nemo_fabm
+    mv /home/singularity/nemo/cfgs/ORCA2_FABM/EXP00 /home/singularity/ORCA2_FABM/EXP00
+========
+>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak)
     /home/singularity/nemo_420.zip
 
 %post
@@ -26,8 +55,13 @@ From: /home/singularity/xios.sif
     mkdir /opt/nemo
     mv /home/singularity/nemo/cfgs/ORCA2_ICE_PISCES/BLD/bin/nemo.exe /opt/nemo
     mv /home/singularity/nemo/cfgs/ORCA2_ICE_PISCES/EXP00 /home/singularity/ORCA2_ICE_PISCES/EXP00
+<<<<<<< HEAD
 
     rm -rf /home/singularity/xios
+=======
+>>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak):nemo_orca2.def
+
+>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak)
     rm -rf /home/singularity/nemo
     # The above didnt seem to work so blanket chmod for time being 
     chmod -Rv 755 /opt
@@ -60,7 +94,11 @@ From: /home/singularity/xios.sif
     fi
 
 %labels
+<<<<<<< HEAD
     Author	carsten.lackner@tu-berlin.de
+=======
+    Author miwa@pml.ac.uk
+>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak)
 
 %help
     The definition file used to build XIOS:

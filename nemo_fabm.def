@@ -11,6 +11,7 @@ From: /home/singularity/fabm.sif
 
 %files
     /home/singularity/input_files/arch/nemo-arch/arch-singularity.fcm
+<<<<<<<< HEAD:nemo_fabm.def
     /home/singularity/nemo_fabm.zip
 
 %post
@@ -26,6 +27,23 @@ From: /home/singularity/fabm.sif
     mkdir /opt/nemo
     mv /home/singularity/nemo/cfgs/ORCA2_FABM/BLD/bin/nemo.exe /opt/nemo_fabm
     mv /home/singularity/nemo/cfgs/ORCA2_FABM/EXP00 /home/singularity/ORCA2_FABM/EXP00
+========
+    /home/singularity/nemo_420.zip
+
+%post
+    cd /home/singularity
+    unzip nemo_420.zip
+    rm nemo_420.zip
+    cd /home/singularity/nemo
+    cp /home/singularity/input_files/arch/nemo-arch/* /home/singularity/nemo/arch
+
+    echo "Compiling nemo ORCA2_ICE Config"
+    ./makenemo -m singularity -r ORCA2_ICE_PISCES -j 8
+
+    mkdir /opt/nemo
+    mv /home/singularity/nemo/cfgs/ORCA2_ICE_PISCES/BLD/bin/nemo.exe /opt/nemo
+    mv /home/singularity/nemo/cfgs/ORCA2_ICE_PISCES/EXP00 /home/singularity/ORCA2_ICE_PISCES/EXP00
+>>>>>>>> f3b7e75 (major changes to pmlmodelling NEMO-container add fabm and ersem ;update to Nemo 4.20 and xios 2.5 with changed flags and file updates according to J Mak):nemo_orca2.def
 
     rm -rf /home/singularity/nemo
     # The above didnt seem to work so blanket chmod for time being 
