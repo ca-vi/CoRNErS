@@ -1,4 +1,10 @@
-# NEMO-container
+# CoRNErS
+Containerisation of Revised NEMO-ERSEM Employing Singularity (CoRNErS)
+
+## basis for these scripts come from NOC-MSM/CoNeS and pmlmodelling/NEMO-container
+## changes for recent model verions from J Mak NEMO notes
+## ERSEM pr version from myself; base version from pmlmodelling/ersem
+---
 
 Repo containing instruction for creating a [singularity container](https://sylabs.io/guides/3.5/user-guide/introduction.html) for NEMO-ERSEM. The setup is based heavily apon the [CoNES repo](https://github.com/NOC-MSM/CoNES) .
 
