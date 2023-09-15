@@ -1,5 +1,5 @@
 Bootstrap: localimage
-From: /home/singularity/base_container/baseOS.sif
+From: /home/singularity/baseOS.sif
 
 ####
 ##
@@ -11,16 +11,43 @@ From: /home/singularity/base_container/baseOS.sif
 #####
 
 %files
-    /home/singularity/../gotm
-    /home/singularity/../fabm
-    /home/singularity/../ersem/ersem
-    /home/singularity/../ersem/ersem_pr
+    /home/singularity/gotm.zip
 
 %post
+    BASE=/home/singularity
+    cd $BASE
+
+    unzip gotm.zip
+    echo "Cloning ERSEM"
+    #git clone -b master --single-branch https://github.com/pmlmodelling/ersem.git ersem
+
+    echo "Cloning FABM"
+    #git clone https://github.com/fabm-model/fabm.git fabm
+
+    echo "Cloning GOTM"
+    #git clone -b v6.0 --single-branch https://github.com/gotm-model/code.git gotm
+    #cd gotm && git submodule update --init --recursive && cd ..
+
+    GOTM_BASE=$BASE/gotm
+    FABM_BASE=$BASE/fabm
+    ERSEM_BASE=$BASE/ersem
+
+    #alias nc-config='/opt/netcdf/install/bin/nc-config'
+    #alias nf-config='/opt/netcdf/install/bin/nf-config'
+    NETCDF=/opt/netcdf/install
     echo "Compiling gotm"
-    mkdir opt/gotm && cd gotm
-    cmake ../../gotm -DFABM_BASE=../../fabm -DFABM_ERSEM_BASE=../../ersem/ersem
+    # baseOS does not know nc-config, we need to specify netcdf include and lib
+    mkdir /opt/gotm && cd /opt/gotm
+    cmake $GOTM_BASE -DFABM_BASE=$FABM_BASE -DFABM_ERSEM_BASE=$ERSEM_BASE -DNetCDF_INCLUDE_DIRS=$NETCDF/include -DNetCDF_LIBRARIES=$NETCDF/lib
+    #-DNetCDF_CONFIG_EXECUTABLE=$NETCDF/bin/nc-config 
+    #-DNetCDF_INCLUDE_DIRS=$NETCDF/include 
+    #-DNetCDF_LIBRARIES=$NETCDF/lib
     make install -j $CPU
+
+    rm -r $GOTM_BASE
+    rm -r $FABM_BASE
+    rm -r $ERSEM_BASE
+    echo "Finished"
         
 %environment
     
@@ -40,4 +67,4 @@ From: /home/singularity/base_container/baseOS.sif
 
     To build the container, run
 
-        singularity build gotm.sif gotm.def
+        singularity build gotm.sif /home/singularity/gotm.def
