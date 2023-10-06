@@ -1,7 +1,7 @@
 # CoRNErS
 Containerization of Revised NEMO-ERSEM Employing Singularity (CoRNErS)
 
-The aim is to build a shippable container of a physical ocean model (NEMO) coupled with a biogeochemical model (ERSEM). Ideally, only input data ([SeTTe](https://gws-access.jasmin.ac.uk/public/nemo/sette_inputs/)) and output specification ([XIOS](https://github.com/pmlmodelling/NEMO4.0-FABM/wiki/Using-XIOS)) are needed to start a full-fledged ocean circulation model (preferably on **any** HPC you get your hands on). 
+The aim is to build a shippable container of a physical ocean model ([NEMO](https://www.nemo-ocean.eu/)) coupled with a biogeochemical model ([ERSEM](https://ersem.readthedocs.io/en/latest/model_info/index.html)). Ideally, only input data ([SeTTe](https://gws-access.jasmin.ac.uk/public/nemo/sette_inputs/)) and output specification ([XIOS](https://github.com/pmlmodelling/NEMO4.0-FABM/wiki/Using-XIOS)) are needed to start a full-fledged ocean circulation model (preferably on **any** HPC you get your hands on). 
 
 - the basis for these scripts comes from [NOC-MSM/CoNeS](https://github.com/NOC-MSM/CoNES) and [pmlmodelling/NEMO-container](https://github.com/pmlmodelling/NEMO-container)
 - changes for recent model versions from [J Mak NEMO notes](https://nemo-related.readthedocs.io/en/latest/compilation_notes/nemo42.html)
